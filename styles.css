@@ -1,0 +1,502 @@
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:#f7f6f4;
+  --white:#fff;
+  --black:#111;
+  --accent:#c6a96b;
+  --muted:#777;
+}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background:var(--bg);
+  color:var(--black);
+}
+
+/* HEADER */
+header{
+  position:sticky;top:0;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:15px 25px;
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+.logo{
+  font-family:'Playfair Display',serif;
+  letter-spacing:3px;
+}
+
+nav ul{
+  display:flex;
+  gap:20px;
+  list-style:none;
+}
+
+nav a{
+  text-decoration:none;
+  color:var(--black);
+  font-size:13px;
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  height:90vh;
+  background:url('https://museethebrand.com/cdn/shop/files/Tezza-5670.jpg?v=1773666388') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to right,
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0.15)
+  );
+}
+
+.hero div{
+  position:relative;
+  z-index:1;
+}
+
+.hero h1{
+  font-size:3.5rem;
+  letter-spacing:4px;
+  font-family:'Playfair Display', serif;
+}
+
+.hero p{
+  font-size:16px;
+  margin-top:10px;
+}
+
+/* REVIEWS */
+.reviews{
+  text-align:center;
+  padding:20px;
+  font-size:14px;
+}
+
+/* FILTROS */
+.filters{
+  display:flex;
+  gap:15px;
+  padding:20px;
+  background:white;
+  position:sticky;
+  top:70px;
+  z-index:900;
+}
+
+/* GRID */
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  padding:20px;
+}
+
+/* CARD */
+.card{
+  background:white;
+  border-radius:6px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+}
+
+.card h3{
+  font-size:14px;
+  padding:10px;
+}
+
+/* BADGE */
+.badge{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:var(--accent);
+  color:white;
+  padding:4px 8px;
+  font-size:11px;
+}
+
+/* PRICE */
+.price{
+  display:flex;
+  gap:10px;
+  padding:0 10px 10px;
+}
+
+.old{
+  text-decoration:line-through;
+  color:#999;
+}
+
+.current{
+  font-weight:600;
+}
+
+/* URGENCY */
+.urgency-box{
+  padding:10px;
+  font-size:11px;
+}
+
+.timer{color:var(--accent)}
+
+/* DRAWER */
+.drawer{
+  position:fixed;
+  right:-320px;
+  top:0;
+  width:320px;
+  height:100%;
+  background:white;
+  transition:.3s;
+  z-index:2000;
+  padding:20px;
+}
+
+.drawer.open{right:0}
+
+/* CARRITO */
+#cartDrawer{
+  border-left:1px solid #eee;
+  box-shadow:-10px 0 30px rgba(0,0,0,0.1);
+}
+
+#cartItems{
+  max-height:60vh;
+  overflow-y:auto;
+  margin-bottom:20px;
+}
+
+.cart-item{
+  display:flex;
+  gap:12px;
+  margin-bottom:15px;
+  border-bottom:1px solid #eee;
+  padding-bottom:10px;
+}
+
+.cart-item img{
+  width:60px;
+  height:70px;
+  object-fit:cover;
+  border-radius:4px;
+}
+
+.cart-item-info p{
+  font-size:13px;
+}
+
+.cart-item-info small{
+  color:#777;
+}
+
+#cartTotal{
+  font-weight:600;
+  margin:10px 0;
+}
+
+/* QUICK VIEW */
+.quick-view{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,.6);
+  z-index:3000;
+}
+
+.quick-view-content{
+  background:white;
+  padding:20px;
+  width:90%;
+  max-width:500px;
+}
+
+/* CHECKOUT */
+.checkout{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(8px);
+
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s ease;
+}
+
+.checkout.active{
+  opacity:1;
+  pointer-events:all;
+}
+
+.checkout > div{
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  width:90%;
+  max-width:400px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.2);
+
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+
+  transform: translateY(30px) scale(.95);
+  transition:all .3s ease;
+}
+
+.checkout.active > div{
+  transform: translateY(0) scale(1);
+}
+
+.checkout input{
+  padding:14px;
+  border:1px solid #eee;
+}
+
+.checkout input:focus{
+  border-color:#c6a96b;
+  outline:none;
+}
+
+.checkout button{
+  background:#111;
+  color:white;
+  padding:14px;
+  border:none;
+  cursor:pointer;
+}
+
+.checkout button:hover{
+  background:#c6a96b;
+}
+
+/* MÉTODOS DE PAGO */
+.payment-methods{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.payment-option{
+  border:1px solid #eee;
+  padding:12px;
+  cursor:pointer;
+}
+
+.payment-option.active{
+  border-color:#c6a96b;
+  background:#f9f7f3;
+}
+
+/* POPUP */
+.lead-popup{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,.6);
+}
+
+/* ==========================
+   POPUP PREMIUM
+========================== */
+
+.lead-box{
+  background:white;
+  padding:40px 30px;
+  border-radius:12px;
+  text-align:center;
+  max-width:380px;
+  width:90%;
+
+  box-shadow:0 25px 60px rgba(0,0,0,0.2);
+  animation:popupFade .4s ease;
+}
+
+.lead-box h2{
+  font-family:'Playfair Display', serif;
+  font-size:24px;
+  margin-bottom:10px;
+}
+
+.lead-box p{
+  font-size:14px;
+  color:#777;
+  margin-bottom:20px;
+}
+
+/* INPUT */
+.lead-box input{
+  width:100%;
+  padding:12px;
+  border:1px solid #eee;
+  margin-bottom:10px;
+  transition:.3s;
+}
+
+.lead-box input:focus{
+  border-color:#c6a96b;
+  outline:none;
+}
+
+/* BOTÓN */
+.lead-box button{
+  width:100%;
+  padding:12px;
+  background:#111;
+  color:white;
+  border:none;
+  cursor:pointer;
+  letter-spacing:1px;
+  transition:.3s;
+}
+
+.lead-box button:hover{
+  background:#c6a96b;
+}
+
+/* ANIMACIÓN */
+@keyframes popupFade{
+  from{
+    opacity:0;
+    transform:translateY(20px) scale(.95);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+/* CONTACT */
+.contact-section{
+  background:#fff;
+  padding:80px 20px;
+}
+
+.contact-container{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+}
+
+.contact-form{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.contact-form input,
+.contact-form textarea{
+  padding:14px;
+  border:1px solid #eee;
+}
+
+.contact-form button{
+  background:#111;
+  color:#fff;
+  padding:14px;
+  border:none;
+}
+
+.contact-form button:hover{
+  background:#c6a96b;
+}
+
+/* NEWSLETTER */
+.newsletter-section{
+  background:#111;
+  color:white;
+  text-align:center;
+  padding:60px 20px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav ul{display:none}
+  .contact-container{grid-template-columns:1fr}
+}
+/* ==========================
+   BOTÓN AGREGAR PRO
+========================== */
+
+.card button{
+  width:100%;
+  padding:12px;
+  margin:10px;
+  border:none;
+  cursor:pointer;
+
+  background:linear-gradient(135deg,#111,#2a2a2a);
+  color:white;
+  font-size:13px;
+  letter-spacing:1px;
+
+  border-radius:6px;
+  transition:all .3s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+/* efecto hover */
+.card button:hover{
+  background:linear-gradient(135deg,#c6a96b,#a88d52);
+  transform:translateY(-2px);
+  box-shadow:0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* efecto click */
+.card button:active{
+  transform:scale(0.97);
+}
+
+/* brillo sutil */
+.card button::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.3),transparent);
+  transition:.5s;
+}
+
+.card button:hover::after{
+  left:100%;
+}

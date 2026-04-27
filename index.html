@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AureModa</title>
+
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+  <div class="menu-toggle">☰</div>
+  <div class="logo">AUREMODA</div>
+
+  <nav>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#Nueva">Nueva</a></li>
+      <li><a href="#Vestidos">Vestidos</a></li>
+      <li><a href="#Tops">Tops</a></li>
+      <li><a href="#Sets">Sets</a></li>
+      <li><a href="#Sale">Sale</a></li>
+      <li><a href="#Contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <button id="openCartBtn">🛍️ <span id="cartCount">0</span></button>
+</header>
+
+<section class="hero" id="inicio">
+  <div>
+    <h1>NUEVA COLECCIÓN</h1>
+    <p>Minimalismo moderno</p>
+    <p class="urgency">🔥 Termina en <span id="countdown"></span></p>
+  </div>
+</section>
+
+<section class="reviews">★★★★★ +2.000 clientes satisfechos</section>
+
+<!-- FILTROS -->
+<div class="filters">
+  <select id="filterSize">
+    <option value="all">Talla</option>
+    <option>S</option><option>M</option><option>L</option>
+  </select>
+
+  <input type="range" id="filterPrice" min="50000" max="200000">
+  <span id="priceValue"></span>
+
+  <select id="sortProducts">
+    <option value="default">Orden</option>
+    <option value="low">Menor precio</option>
+    <option value="high">Mayor precio</option>
+  </select>
+
+  <span id="productCount"></span>
+</div>
+
+<main id="contenido"></main>
+
+<!-- CONTACTO -->
+<section id="Contacto" class="contact-section">
+
+  <div class="contact-container">
+
+    <div class="contact-info">
+      <h2>Contáctanos</h2>
+      <p>Estamos aquí para ayudarte</p>
+
+      <div class="contact-item">
+        <strong>Email</strong>
+        <span>info@auremoda.com</span>
+      </div>
+
+      <div class="contact-item">
+        <strong>WhatsApp</strong>
+        <span>+57 300 000 0000</span>
+      </div>
+
+      <div class="contact-item">
+        <strong>Horario</strong>
+        <span>Lunes a Sábado · 9am – 6pm</span>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="sendContact(event)">
+      <input placeholder="Nombre" required>
+      <input placeholder="Correo" required>
+      <textarea placeholder="Mensaje" rows="4"></textarea>
+      <button>Enviar mensaje</button>
+    </form>
+
+  </div>
+
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <h2>10% OFF</h2>
+  <form onsubmit="subscribeUser(event)">
+    <input id="newsletterEmail" placeholder="Correo">
+    <button>Suscribirme</button>
+  </form>
+</section>
+
+<footer>© 2026 AureModa</footer>
+
+<!-- CARRITO -->
+<div id="cartDrawer" class="drawer">
+  <h2>Carrito</h2>
+  <div id="cartItems"></div>
+  <h3 id="cartTotal"></h3>
+  <button onclick="openCheckout()">Comprar</button>
+</div>
+
+<div id="overlay" onclick="closeAll()"></div>
+
+<!-- QUICK VIEW -->
+<div id="quickView" class="quick-view">
+  <div class="quick-view-content">
+    <span onclick="closeQuickView()">✕</span>
+    <img id="qv-img">
+    <h2 id="qv-name"></h2>
+    <div id="qv-price"></div>
+    <button id="qv-btn">Agregar</button>
+  </div>
+</div>
+
+<!-- CHECKOUT -->
+<div id="checkout" class="checkout">
+  <div>
+    <input placeholder="Nombre">
+    <input placeholder="Correo">
+    <button onclick="processPayment()">Pagar</button>
+  </div>
+</div>
+
+<!-- POPUP -->
+<div id="leadPopup" class="lead-popup">
+  <div class="lead-box">
+    <span onclick="closePopup()">✕</span>
+    <h2>10% OFF</h2>
+    <form onsubmit="saveLead(event)">
+      <input id="leadEmail" placeholder="Correo">
+      <button>Obtener</button>
+    </form>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
